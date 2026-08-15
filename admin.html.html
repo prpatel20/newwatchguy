@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NewWatchGuy — Admin Panel</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <img src="../images/logo.png" alt="NewWatchGuy" class="login-logo">
+    <div class="eyebrow">PRIVATE ADMIN</div>
+    <h1>NewWatchGuy</h1>
+    <p>Manage your curated watch products and affiliate links.</p>
+    <form id="loginForm">
+      <label>Admin password<input id="password" type="password" autocomplete="current-password" required></label>
+      <button class="gold-btn" type="submit">LOGIN</button>
+      <div id="loginError" class="error" role="alert"></div>
+    </form>
+    <small>Local demo mode. Change the demo password in <code>admin.js</code> before use.</small>
+  </div>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside class="sidebar">
+    <div class="brand"><img src="../images/logo.png" alt=""><span>NEWWATCHGUY</span></div>
+    <nav>
+      <button class="nav-item active" data-view="dashboard">Dashboard</button>
+      <button class="nav-item" data-view="products">Products</button>
+      <button class="nav-item" data-view="brands">Brands</button>
+      <button class="nav-item" data-view="categories">Categories</button>
+      <button class="nav-item" data-view="affiliate">Affiliate Links</button>
+      <button class="nav-item" data-view="settings">Settings</button>
+    </nav>
+    <div class="side-bottom"><a href="../" target="_blank">View Website ↗</a><button id="logout">Logout</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">CONTROL CENTER</div><h2 id="viewTitle">Dashboard</h2></div><button id="quickAdd" class="gold-btn">+ Add Product</button></header>
+
+    <section id="dashboardView" class="view">
+      <div class="stats"><div class="stat"><span>Total Products</span><strong id="statProducts">0</strong></div><div class="stat"><span>Published</span><strong id="statPublished">0</strong></div><div class="stat"><span>Drafts</span><strong id="statDrafts">0</strong></div><div class="stat"><span>Affiliate Clicks</span><strong id="statClicks">0</strong></div></div>
+      <div class="panel"><div class="panel-head"><div><h3>Recent Products</h3><p>Your latest curated watches.</p></div><button class="text-btn" data-view="products">View all →</button></div><div id="recentProducts" class="table-wrap"></div></div>
+      <div class="notice"><strong>Important:</strong> This first version stores products in this browser's localStorage. It is ideal for testing the admin UI, but it is <b>not a secure production database</b> and changes are not automatically visible to other visitors/devices. Use the Export/Import tools below until a Supabase backend is connected.</div>
+    </section>
+
+    <section id="productsView" class="view" hidden>
+      <div class="toolbar"><input id="productSearch" placeholder="Search products, brands..."><select id="statusFilter"><option value="all">All status</option><option value="published">Published</option><option value="draft">Draft</option><option value="archived">Archived</option></select><button id="exportProducts" class="dark-btn">Export JSON</button><label class="file-btn">Import JSON<input id="importProducts" type="file" accept="application/json" hidden></label></div>
+      <div class="panel"><div id="productsTable" class="table-wrap"></div></div>
+    </section>
+
+    <section id="brandsView" class="view" hidden><div class="panel"><h3>Brands</h3><p>Brand management UI is prepared for the database version.</p><div class="chip-list" id="brandList"></div></div></section>
+    <section id="categoriesView" class="view" hidden><div class="panel"><h3>Categories</h3><p>Category management UI is prepared for the database version.</p><div class="chip-list" id="categoryList"></div></div></section>
+    <section id="affiliateView" class="view" hidden><div class="panel"><h3>Affiliate Links</h3><p>Each product can contain multiple retailer links in the database version. The current form supports one primary affiliate URL per product.</p><div class="notice">Use <b>rel="sponsored nofollow"</b> on affiliate outbound links. Always follow the disclosure and link rules of each affiliate program.</div></div></section>
+    <section id="settingsView" class="view" hidden><div class="panel"><h3>Settings</h3><p>Site settings will move to the backend when Supabase is connected.</p><button id="clearData" class="danger-btn">Clear Local Product Data</button></div></section>
+  </main>
+</div>
+
+<div id="productModal" class="modal" hidden>
+  <div class="modal-card"><div class="modal-head"><div><div class="eyebrow">PRODUCT MANAGEMENT</div><h2 id="modalTitle">Add Product</h2></div><button id="closeModal" class="icon-btn">×</button></div>
+  <form id="productForm" class="form-grid">
+    <input id="productId" type="hidden">
+    <label>Product name*<input id="name" required placeholder="e.g. G-Shock GA-2100"></label>
+    <label>Brand*<input id="brand" required placeholder="Casio"></label>
+    <label>Category<select id="category"><option>Men's Watches</option><option>Women's Watches</option><option>Automatic</option><option>Chronograph</option><option>Smart Watches</option><option>Luxury Watches</option><option>Budget Watches</option></select></label>
+    <label>Retailer<input id="retailer" placeholder="Amazon / Flipkart"></label>
+    <label>Price (INR)*<input id="price" type="number" min="0" required></label>
+    <label>Original price<input id="originalPrice" type="number" min="0"></label>
+    <label>Rating<input id="rating" placeholder="★ 4.6"></label>
+    <label>Status<select id="status"><option value="published">Published</option><option value="draft">Draft</option><option value="archived">Archived</option></select></label>
+    <label class="full">Image URL*<input id="image" required placeholder="images/watch-mens.jpg or https://..."></label>
+    <label class="full">Affiliate URL*<input id="affiliateUrl" type="url" required placeholder="https://...your-affiliate-link..."></label>
+    <label class="full">Description<textarea id="description" rows="4" placeholder="Short product description"></textarea></label>
+    <label>Movement<input id="movement" placeholder="Quartz / Automatic"></label>
+    <label>Case size<input id="caseSize" placeholder="45 mm"></label>
+    <label>Strap<input id="strap" placeholder="Resin / Steel"></label>
+    <label>Water resistance<input id="waterResistance" placeholder="200 m"></label>
+    <div class="form-actions full"><button type="button" id="cancelModal" class="dark-btn">Cancel</button><button class="gold-btn" type="submit">Save Product</button></div>
+  </form></div>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>
