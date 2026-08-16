@@ -1,0 +1,187 @@
+/* ==========================================================================
+   NewWatchGuy — Site Extra Styles
+   Supplementary styles for pages/components added on top of index.css:
+   product listing, filters, product detail, search, wishlist, legal pages.
+   Uses the same design tokens defined in index.css :root
+   ========================================================================== */
+
+.wishlist-count-badge {
+  display: none;
+  position: absolute;
+  top: -4px; right: -6px;
+  background: var(--color-gold);
+  color: #0B0B0B;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+.wishlist-count-badge.show { display: inline-flex; }
+.product-wishlist.active svg,
+.wishlist-btn.active svg { fill: var(--color-gold); stroke: var(--color-gold); }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-gray);
+  padding: 40px 20px;
+  border: 1px dashed var(--color-gold-30);
+  border-radius: var(--radius);
+}
+
+/* ---- Page header (used by inner pages instead of the big hero) ---- */
+.page-header {
+  padding: 150px 24px 50px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, #1a1a15, #050505 60%);
+}
+.page-header h1 {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 0 0 10px;
+}
+.page-header p { color: var(--color-gray); max-width: 640px; margin: 0 auto; }
+.breadcrumbs { font-size: 13px; color: var(--color-gray); margin-bottom: 16px; }
+.breadcrumbs a { color: var(--color-gray); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--color-gold); }
+
+/* ---- Listing layout: sidebar filters + grid ---- */
+.listing-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .listing-wrap { grid-template-columns: 1fr; }
+}
+
+.filters-panel {
+  background: var(--color-card);
+  border: 1px solid var(--color-gold-15);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+}
+.filters-panel h4 {
+  color: var(--color-gold);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.filter-group { margin-bottom: 22px; }
+.filter-group:last-child { margin-bottom: 0; }
+.filters-panel select,
+.filters-panel input[type="number"] {
+  width: 100%;
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  color: var(--color-white);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+}
+.filter-price-row { display: flex; gap: 8px; }
+.filter-checkbox-list { display: grid; gap: 8px; max-height: 220px; overflow-y: auto; }
+.filter-checkbox-list label { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--color-gray); cursor: pointer; }
+.filter-checkbox-list input { accent-color: var(--color-gold); }
+.filters-clear {
+  display: block; text-align: center; margin-top: 18px;
+  color: var(--color-gold); font-size: 13px; cursor: pointer; background: none; border: 0; width: 100%;
+}
+
+.listing-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+}
+.listing-count { color: var(--color-gray); font-size: 14px; }
+.listing-toolbar select {
+  background: #0a0a0a; border: 1px solid #2a2a2a; color: #fff;
+  padding: 10px 14px; border-radius: var(--radius-sm); font-family: var(--font-body);
+}
+.mobile-filter-toggle { display: none; }
+@media (max-width: 900px) {
+  .mobile-filter-toggle {
+    display: inline-block; background: var(--color-card); border: 1px solid var(--color-gold-30);
+    color: var(--color-gold); padding: 10px 16px; border-radius: var(--radius-sm); cursor: pointer;
+  }
+  .filters-panel { display: none; position: static; }
+  .filters-panel.open { display: block; }
+}
+
+.pagination { display: flex; justify-content: center; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+.pagination button {
+  min-width: 40px; height: 40px; border-radius: 8px; border: 1px solid #2a2a2a;
+  background: var(--color-card); color: var(--color-white); cursor: pointer;
+}
+.pagination button.active { background: var(--color-gold); color: #0B0B0B; border-color: var(--color-gold); }
+.pagination button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ---- Product detail page ---- */
+.product-detail {
+  max-width: var(--max-w); margin: 0 auto; padding: 140px 24px 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+}
+@media (max-width: 860px) { .product-detail { grid-template-columns: 1fr; padding-top: 110px; } }
+.pd-gallery-main {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius);
+  border: 1px solid var(--color-gold-15); background: var(--color-card);
+}
+.pd-thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.pd-thumbs img {
+  width: 72px; height: 72px; object-fit: cover; border-radius: 8px; cursor: pointer;
+  border: 1px solid #2a2a2a; opacity: .7;
+}
+.pd-thumbs img.active { border-color: var(--color-gold); opacity: 1; }
+.pd-brand { color: var(--color-gold); letter-spacing: .1em; font-size: 13px; text-transform: uppercase; }
+.pd-name { font-family: var(--font-heading); font-size: clamp(26px,3vw,38px); color: #fff; margin: 8px 0 12px; }
+.pd-rating { display: flex; align-items: center; gap: 8px; color: var(--color-gold); margin-bottom: 16px; }
+.pd-rating .rating-count { color: var(--color-gray); font-size: 13px; }
+.pd-price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+.pd-price .price-current { font-size: 30px; color: #fff; font-weight: 700; }
+.pd-price .price-original { color: var(--color-gray); text-decoration: line-through; }
+.pd-price .price-discount { color: #6fbf73; font-weight: 600; }
+.pd-desc { color: var(--color-gray); line-height: 1.7; margin-bottom: 6px; }
+.pd-desc.collapsed {
+  max-height: 90px; overflow: hidden; position: relative;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+.pd-see-more { color: var(--color-gold); background: none; border: 0; cursor: pointer; padding: 0; font-size: 14px; margin-bottom: 24px; }
+.pd-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin: 24px 0; }
+.pd-specs div { display: flex; justify-content: space-between; border-bottom: 1px solid #1e1e1e; padding-bottom: 8px; font-size: 14px; }
+.pd-specs span:first-child { color: var(--color-gray); }
+.pd-specs span:last-child { color: #fff; }
+.pd-cta-row { display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+.pd-disclosure { margin-top: 30px; font-size: 12px; color: var(--color-gray); border-top: 1px solid #1e1e1e; padding-top: 16px; }
+.related-section { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 100px; }
+
+/* ---- Search page ---- */
+.search-summary { color: var(--color-gray); margin-bottom: 24px; }
+
+/* ---- Legal / static content pages ---- */
+.legal-content { max-width: 820px; margin: 0 auto; padding: 150px 24px 100px; color: var(--color-gray); line-height: 1.8; }
+.legal-content h1 { font-family: var(--font-heading); color: #fff; margin-bottom: 8px; }
+.legal-content h2 { color: var(--color-gold); font-size: 20px; margin: 32px 0 12px; }
+.legal-content p { margin-bottom: 14px; }
+.legal-content .updated { color: #666; font-size: 13px; margin-bottom: 30px; }
+.contact-form { display: grid; gap: 16px; max-width: 480px; margin-top: 30px; }
+.contact-form input, .contact-form textarea {
+  background: #0a0a0a; border: 1px solid #2a2a2a; color: #fff; padding: 12px 14px; border-radius: var(--radius-sm); font-family: var(--font-body);
+}
+.contact-form button { justify-self: start; }
+.form-note { font-size: 13px; color: #6fbf73; min-height: 18px; }
+
+/* ---- Wishlist page ---- */
+.wishlist-empty { text-align: center; padding: 80px 24px; color: var(--color-gray); }
+.wishlist-empty a { color: var(--color-gold); }

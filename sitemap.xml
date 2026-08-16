@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://prpatel20.github.io/newwatchguy/index.html</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/products.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/brands.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/deals.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/about.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/contact.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://prpatel20.github.io/newwatchguy/affiliate-disclosure.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
+<!--
+  NOTE: Individual product pages (product.html?slug=...) are created
+  dynamically from the database and are not listed here individually.
+  Search engines will discover them by following links from products.html,
+  the homepage, and category/brand pages. For deeper SEO control later,
+  you can generate a dynamic sitemap via a Supabase Edge Function — see
+  TROUBLESHOOTING.md for pointers.
+-->

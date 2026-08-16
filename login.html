@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Login — NewWatchGuy</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <svg width="56" height="56" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 8px;display:block;">
+      <circle cx="16" cy="16" r="14" stroke="#D4AF37" stroke-width="2"/>
+      <circle cx="16" cy="16" r="10" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+      <line x1="16" y1="6" x2="16" y2="16" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+      <line x1="16" y1="16" x2="22" y2="20" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="16" r="2" fill="#D4AF37"/>
+    </svg>
+    <div class="eyebrow">PRIVATE ADMIN</div>
+    <h1>NEW WATCH GUY</h1>
+    <p id="loginSubtitle">Sign in to manage your curated watch catalog.</p>
+
+    <form id="loginForm">
+      <label>Email
+        <input id="email" type="email" autocomplete="username" required>
+      </label>
+      <label>Password
+        <div class="pw-wrap">
+          <input id="password" type="password" autocomplete="current-password" required>
+          <button type="button" id="togglePw" class="pw-toggle" aria-label="Show password">Show</button>
+        </div>
+      </label>
+      <label class="remember-row">
+        <input type="checkbox" id="rememberMe" checked style="width:auto;">
+        <span>Keep me signed in</span>
+      </label>
+      <button class="gold-btn" type="submit" id="loginSubmit">LOGIN</button>
+      <div id="loginError" class="error" role="alert"></div>
+      <button type="button" id="forgotPasswordBtn" class="text-link-btn">Forgot password?</button>
+    </form>
+
+    <form id="forgotForm" hidden>
+      <p style="color:#a8a49a;font-size:13px;margin:0 0 14px;">Enter your admin email and we'll send a password reset link.</p>
+      <label>Email
+        <input id="forgotEmail" type="email" required>
+      </label>
+      <button class="gold-btn" type="submit" id="forgotSubmit">SEND RESET LINK</button>
+      <div id="forgotMessage" class="error" role="status"></div>
+      <button type="button" id="backToLoginBtn" class="text-link-btn">← Back to login</button>
+    </form>
+
+    <small>First time setup? See <code>SUPABASE_SETUP.md</code> in the project root for how to create your admin account.</small>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="admin-auth.js"></script>
+<script src="admin-login.js"></script>
+</body>
+</html>
