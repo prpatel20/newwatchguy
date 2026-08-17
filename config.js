@@ -15,8 +15,8 @@
  * ---------------------------------------------------------------------
  */
 window.NWG_CONFIG = {
-  SUPABASE_URL: 'https://YOUR-PROJECT-REF.supabase.co',
-  SUPABASE_ANON_KEY: 'YOUR-ANON-PUBLIC-KEY',
+  SUPABASE_URL: 'https://dsnmguedorabszqqtbid.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_LHC4Jj3HT1MYU9GuM6V7gw_6AMBKEn3',
 
   // Used to build affiliate click rows and page paths. Leave as-is
   // unless you rename the repo.

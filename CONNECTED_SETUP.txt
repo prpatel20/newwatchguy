@@ -1,0 +1,23 @@
+# NewWatchGuy — Connected Supabase Package
+
+This copy is configured for the supplied Supabase project.
+
+- Supabase URL: https://dsnmguedorabszqqtbid.supabase.co
+- Frontend uses the supplied publishable key in `js/config.js`.
+- Never add a Supabase service-role/secret key to this project.
+
+Before deployment, run these in Supabase SQL Editor, in order:
+1. `supabase/schema.sql`
+2. `supabase/rls.sql`
+3. `supabase/seed.sql` (optional demo data)
+
+Create the Storage bucket `product-images` and enable Public access.
+Create the admin user in Supabase Authentication → Users.
+
+Admin URL after deployment:
+`/admin/`
+
+Product pages use:
+`product.html?slug=PRODUCT_SLUG`
+
+Affiliate destination comes from the product's `affiliate_url` database field.
